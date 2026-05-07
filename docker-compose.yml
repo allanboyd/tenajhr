@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: janet-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: janet
+      POSTGRES_PASSWORD: janet
+      POSTGRES_DB: janet
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U janet -d janet"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    build:
+      context: .
+      target: migrator
+    container_name: janet-migrate
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://janet:janet@db:5432/janet?schema=public
+    restart: "no"
+
+  app:
+    build: .
+    container_name: janet-app
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgresql://janet:janet@db:5432/janet?schema=public
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: changeme
+      AUTH_SECRET: change-this-in-production
+      NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${NEXT_PUBLIC_FORMSPREE_ENDPOINT:-}
+    ports:
+      - "3000:3000"
+
+volumes:
+  dbdata:

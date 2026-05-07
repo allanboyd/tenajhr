@@ -1,0 +1,122 @@
+.inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+/* LABEL HELPERS */
+.label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.labelLight {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold-light); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.labelLight::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold-light); }
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px); font-weight: 400;
+  line-height: 1.12; color: var(--ink); margin-bottom: 0;
+}
+.title em { font-style: italic; color: var(--maroon); }
+.titleLight {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px); font-weight: 400;
+  line-height: 1.12; color: var(--white); margin-bottom: 0;
+}
+
+/* SERVICES */
+.services {
+  padding: 120px 48px;
+  background: var(--maroon);
+  position: relative; overflow: hidden;
+}
+.servicesGrid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 56px;
+  background: rgba(255,255,255,0.06);
+}
+.serviceCard {
+  background: var(--maroon); padding: 40px 32px;
+  cursor: default; transition: background 0.25s;
+  position: relative; overflow: hidden;
+}
+.serviceCard::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background: var(--gold);
+  transition: width 0.3s ease;
+}
+.serviceCard:hover { background: var(--maroon-deep); }
+.serviceCard:hover::after { width: 100%; }
+.serviceNum {
+  font-family: var(--font-display); font-size: 48px; font-weight: 300;
+  color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: 20px;
+}
+.serviceTitle { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--white); margin-bottom: 10px; line-height: 1.25; }
+.serviceDesc { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; font-style: italic; }
+.serviceList { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.serviceList li {
+  font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.45;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.serviceList li::before { content: '→'; color: var(--gold-light); flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+
+/* IMPACT */
+.impact { padding: 120px 48px; background: var(--white); }
+.impactGrid {
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 80px; align-items: start; margin-top: 56px;
+}
+.stats { display: flex; flex-direction: column; gap: 32px; }
+.stat { padding: 28px; background: var(--cream); border-left: 3px solid var(--maroon); }
+.statNum { font-family: var(--font-display); font-size: 52px; font-weight: 300; color: var(--maroon); line-height: 1; margin-bottom: 6px; }
+.statLabel { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+.impactItems { display: flex; flex-direction: column; gap: 20px; }
+.impactItem {
+  padding: 24px 28px; border: 1px solid var(--border); border-radius: 2px;
+  display: flex; align-items: flex-start; gap: 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.impactItem:hover { border-color: var(--maroon-muted); box-shadow: 0 4px 20px rgba(123,29,29,0.06); }
+.impactDot { width: 8px; height: 8px; border-radius: 50%; background: var(--maroon); flex-shrink: 0; margin-top: 7px; }
+.impactText { font-size: 15.5px; color: var(--ink-soft); line-height: 1.65; }
+.impactCta {
+  margin-top: 48px; padding: 28px 32px;
+  background: var(--cream); border-top: 2px solid var(--maroon);
+  font-family: var(--font-display); font-size: 20px; font-style: italic;
+  color: var(--ink); line-height: 1.5;
+}
+
+/* PHILOSOPHY */
+.philosophy { padding: 120px 48px; background: var(--cream-dark); }
+.philGrid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px; margin-top: 56px;
+}
+.philCard {
+  padding: 36px 28px; background: var(--white);
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.2s;
+}
+.philCard::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--maroon), var(--maroon-muted));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+}
+.philCard:hover { box-shadow: 0 12px 40px rgba(123,29,29,0.1); transform: translateY(-3px); }
+.philCard:hover::before { transform: scaleX(1); }
+.philQuote { font-family: var(--font-display); font-size: 24px; font-weight: 400; line-height: 1.35; color: var(--ink); margin-bottom: 16px; }
+.philBody { font-size: 14px; color: var(--ink-muted); line-height: 1.7; font-style: italic; }
+.philNum {
+  position: absolute; bottom: 20px; right: 24px;
+  font-family: var(--font-display); font-size: 64px; font-weight: 300;
+  color: rgba(123,29,29,0.05); line-height: 1; pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .services, .impact, .philosophy { padding: 80px 24px; }
+  .servicesGrid { grid-template-columns: 1fr; }
+  .impactGrid { grid-template-columns: 1fr; gap: 40px; }
+  .philGrid { grid-template-columns: 1fr; }
+}
